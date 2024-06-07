@@ -11,7 +11,11 @@ namespace fristapp
 
         public static void p(string[] args)
         {
-            Console.WriteLine("RES");
+            int i = 1;
+            while (i<10) {
+                Console.WriteLine(i);
+                i++;
+            }
         }
     }
 }
