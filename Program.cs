@@ -11,7 +11,7 @@ namespace fristapp
         static void Main(string[] args)
         {
             Console.WriteLine("rer");
-            second.sp(args);
+       
         }
        
     }
