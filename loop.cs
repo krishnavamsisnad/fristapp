@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace fristapp
 {
-    internal class Program
+    internal class loop
     {
-        static void Main(string[] args)
+
+        public static void p(string[] args)
         {
-            Console.WriteLine("rer");
-            second.sp(args);
-            loop.p(args);
+            Console.WriteLine("RES");
         }
-       
     }
 }
