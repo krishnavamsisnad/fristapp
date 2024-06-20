@@ -3,6 +3,8 @@ using CompanyofSnad.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CompanyofSnad.Controllers
 {
@@ -11,23 +13,31 @@ namespace CompanyofSnad.Controllers
     public class EmployeDetailesController : ControllerBase
     {
         private readonly DataDbContext _dbContext;
-        public EmployeDetailesController (DataDbContext dbContext)
-        {
 
+        public EmployeDetailesController(DataDbContext dbContext)
+        {
             _dbContext = dbContext;
+        }
 
-        }
         [HttpGet]
-        public async Task<IEnumerable<Employedetailes>> GetEmployedetalies()
+        public async Task<ActionResult<IEnumerable<Employedetailes>>> GetEmployedetalies()
         {
-            return await _dbContext.Employedetailes.ToListAsync();
+            var employeeDetails = await _dbContext.Employedetailes.ToListAsync();
+            return Ok(employeeDetails);
         }
+
         [HttpPost]
-        public async Task<ActionResult<Employedetailes>> AddEmpoye(Employedetailes employedetailes)
+        public async Task<IActionResult> CreateEmployeeDetails([FromBody] Employedetailes employeeDetails)
         {
-            _dbContext.Employedetailes.Add(employedetailes);
-            await _dbContext.SaveChangesAsync();    
-            return Ok();
+            if (employeeDetails == null || employeeDetails.Employes == null)
+            {
+                return BadRequest("The employes field is required.");
+            }
+
+            _dbContext.Employedetailes.Add(employeeDetails);
+            await _dbContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetEmployedetalies), new { id = employeeDetails.Employeid }, employeeDetails);
         }
     }
 }
