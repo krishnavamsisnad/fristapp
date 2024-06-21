@@ -7,6 +7,6 @@
         public string Phonenumber { get; set; }
         public string Region { get; set; }
         public int Employeid { get; set; }//f.k
-        public Employes Employes { get; set; }//refre navi pro
+        public virtual Employes Employes { get; set; }//refre navi pro
     }
 }
