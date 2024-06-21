@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CompanyofSnad.Controllers
+namespace CompanyofSnad.Controllers.v2
 {
-    [Route("api/[controller]")]
+   
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("2.0")]
     public class EmployeDetailesController : ControllerBase
     {
         private readonly DataDbContext _dbContext;

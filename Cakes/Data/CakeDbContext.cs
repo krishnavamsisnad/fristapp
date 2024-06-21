@@ -30,7 +30,7 @@ namespace Cakes.Data
             modelBuilder.Entity<Cakesdata>()
                 .HasOne(c => c.Delivery)
                 .WithOne(d => d.Cakesdata)
-                .HasForeignKey<Delivery>(d => d.CakesdataId)
+                .HasForeignKey<Delivery>(d => d.CakesId)
                 .IsRequired(); // Ensures that CakesdataId must have a value and be unique
 
             base.OnModelCreating(modelBuilder);

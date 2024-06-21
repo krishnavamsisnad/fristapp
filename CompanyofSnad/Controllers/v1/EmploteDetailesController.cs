@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CompanyofSnad.Controllers
+namespace CompanyofSnad.Controllers.v1
 {
-    [Route("api/[controller]")]
+   
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class EmployeController : ControllerBase
     {
         private readonly DataDbContext _dbContext;
@@ -27,7 +29,8 @@ namespace CompanyofSnad.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Employes>> AddEmploy(Employes employes)
+        [Route("AddEmploy")]
+        public async Task<ActionResult<Employes>> AddEmploy([FromQuery] Employes employes)
         {
             _dbContext.Employes.Add(employes);
             await _dbContext.SaveChangesAsync();

@@ -16,6 +16,7 @@ namespace CompanyofSnad
             // Add services to the container.
          
             builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Companydb")));
+
             builder.Services.AddApiVersioning(options =>
             {
                 options.AssumeDefaultVersionWhenUnspecified = true;
